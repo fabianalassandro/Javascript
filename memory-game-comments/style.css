@@ -1,0 +1,73 @@
+* {
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+/*
+Box sizing: border-box is to keep padding and border inside the box. The default is content-box that add padding and border out of the box. PS: in border-box margin is non included.
+*/
+
+body{
+  height: 100vh;
+  /*This is to set the body as 100% of the viewport (webpage*/
+  background: #2c87ae;
+}
+/*
+vh = viewport height. Viewport is the visible area of a webpage.
+vh = 1% of viewport height
+vw = 1% of viewport width
+*/
+
+main{
+  display: flex;
+}
+
+.memory-game{
+  width: 720px;
+  height: 720px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 2px solid yellow; */
+  margin: auto;
+  perspective: 1000px
+}
+
+.memory-card{
+  width: calc(25% - 10px); /*Css calc function | here I'm removing the 5px on the right and on the left from the width*/
+  height: 33.333%;
+  background: #51b9e5;
+  position: relative;
+  border: 4px solid #51b9e5;
+  border-radius: 5px;
+  margin: 5px;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s
+}
+
+.flip{
+  transform:rotateY(180deg); /* To flip the card of 180 degrees */
+}
+
+.memory-card:active {
+  transform: scale(.97); /*To create the bounce effect on click*/
+  transition: transform .2s;
+}
+
+.front-face, .back-face{
+  width:100%; /*to set the images taking 100% of its container*/
+  height:100%; /*to set the images taking 100% of its container*/
+  padding: 20px;
+  position: absolute;
+  /* border-radius: 5px; */
+  /*border: 2px solid #51b9e5;*/
+  backface-visibility: hidden; /*To hide the backface of the cards by default. This means when I click, the card is flipping by showing an empty face.*/
+}
+
+.front-face{
+  transform: rotateY(180deg); /*After hide the backface above here by rotate the frontface I'm making show them on click.*/
+}
+
+img{
+  max-width: 100%
+}
